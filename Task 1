@@ -1,0 +1,134 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'My Profile',
+      home: const ProfilePage(),
+    );
+  }
+}
+
+class ProfilePage extends StatelessWidget {
+  const ProfilePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('My Profile'),
+      ),
+
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+
+          child: Column(
+            children: [
+
+// Name
+              const Text(
+                'Sardar Ali Naseer',
+                style: TextStyle(
+                  fontSize: 28,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+
+              const SizedBox(height: 10),
+
+// Divider above image
+              const Divider(
+                thickness: 2,
+              ),
+
+              const SizedBox(height: 20),
+
+// Image
+              ClipRRect(
+                borderRadius: BorderRadius.circular(15),
+                child: Image.asset(
+                  'res/images/ali.jpeg',
+                  width: 300,
+                  height: 300,
+                  fit: BoxFit.cover,
+                ),
+              ),
+
+              const SizedBox(height: 20),
+
+// Divider below image
+              const Divider(
+                thickness: 2,
+              ),
+
+              const SizedBox(height: 25),
+
+// About heading
+              const Text(
+                'About Me',
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+
+              const SizedBox(height: 15),
+
+// About me
+              const Text(
+                'I am a software engineering and I enjoy coding '
+                    'making softwares. I am interested in learning '
+                    'new technologies and improving my programming skills.',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 17,
+                  height: 1.5,
+                ),
+              ),
+
+              const SizedBox(height: 25),
+
+// Phone number
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+
+                  Icon(
+                    Icons.phone,
+                    size: 25,
+                  ),
+
+                  SizedBox(width: 10),
+
+                  Text(
+                    '+92 300 1234567',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+
+              const SizedBox(height: 30),
+
+// Bottom divider
+              const Divider(
+                thickness: 2,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
