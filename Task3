@@ -1,0 +1,116 @@
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: LoginPage(),
+    );
+  }
+}
+
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  TextEditingController id = TextEditingController();
+  TextEditingController password = TextEditingController();
+
+  String message = "";
+
+  void login() {
+    setState(() {
+      if (id.text.isEmpty && password.text.isEmpty) {
+        message = "Please enter ID and Password";
+      } else if (id.text.isEmpty) {
+        message = "Please enter your ID";
+      } else if (password.text.isEmpty) {
+        message = "Please enter your Password";
+      } else if (password.text.length < 6) {
+        message = "Password must be at least 6 characters";
+      } else {
+        message = "Login Successful!";
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Login Page"),
+        backgroundColor: Colors.blue,
+      ),
+      body: Center(
+        child: Container(
+          width: 300,
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Text(
+                "Welcome ",
+                style: TextStyle(
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+
+              const SizedBox(height: 20),
+
+              TextField(
+                controller: id,
+                decoration: const InputDecoration(
+                  labelText: "Enter ID",
+                  border: OutlineInputBorder(),
+                ),
+              ),
+
+              const SizedBox(height: 15),
+
+              TextField(
+                controller: password,
+                obscureText: true,
+                decoration: const InputDecoration(
+                  labelText: "Enter Password",
+                  border: OutlineInputBorder(),
+                ),
+              ),
+
+              const SizedBox(height: 20),
+
+              ElevatedButton(
+                onPressed: login,
+                child: const Text("Login"),
+              ),
+
+              const SizedBox(height: 10),
+
+              Text(
+                message,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: message == "Login Successful!"
+                      ? Colors.green
+                      : Colors.red,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
